@@ -32,6 +32,7 @@ from metalins.errors import (
     AgentNotFound,
     ServerError,
 )
+from metalins.integrations.anthropic import trace, monitor
 
 __version__ = "0.4.0"
 
@@ -50,4 +51,7 @@ __all__ = [
     "AuthenticationError",
     "AgentNotFound",
     "ServerError",
+    # Anthropic integration
+    "trace",
+    "monitor",
 ]
