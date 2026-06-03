@@ -76,6 +76,27 @@ handler = MetalinsCallbackHandler(agent)
 chain.invoke(user_input, config={"callbacks": [handler]})
 ```
 
+## FastAPI
+
+Add the ASGI middleware and every HTTP request/response pair is logged
+automatically — no explicit `agent.log(...)` in your route handlers. The
+middleware is pure ASGI, so it also works with Starlette and any other ASGI app.
+
+```python
+import metalins
+from fastapi import FastAPI
+from metalins.integrations.fastapi import MetalinsMiddleware
+
+agent = metalins.Agent(api_key="ml_live_...", name="my-api").start()
+
+app = FastAPI()
+app.add_middleware(MetalinsMiddleware, agent=agent)
+```
+
+Skip noisy endpoints with `exclude_paths=["/health"]`, or pass
+`should_log=lambda scope: ...` for full control. Request and response bodies are
+hashed locally and buffered only up to `max_body_bytes` (1 MiB by default).
+
 ## Lower-level: `Client` + `AgentSession`
 
 `Agent` is built from two primitives you can also use directly. `Client` is a

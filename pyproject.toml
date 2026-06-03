@@ -26,11 +26,15 @@ dependencies = [
 
 [project.optional-dependencies]
 langchain = ["langchain-core>=0.3.0"]
+# The FastAPI middleware is pure ASGI and imports nothing from FastAPI at
+# runtime; this extra just pulls FastAPI in for convenience.
+fastapi = ["fastapi>=0.110.0"]
 dev = [
     "pytest>=8.0",
     "pytest-asyncio>=0.24.0",
     "respx>=0.21.0",
     "langchain-core>=0.3.0",
+    "starlette>=0.37.0",
 ]
 
 [project.urls]
