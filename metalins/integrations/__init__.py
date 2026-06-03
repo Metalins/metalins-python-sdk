@@ -7,4 +7,5 @@ integrations are kept here, behind their own imports, so the base
 
 Currently shipped:
 - `metalins.integrations.langchain` — a LangChain callback handler.
+- `metalins.integrations.fastapi` — an ASGI middleware for FastAPI.
 """
